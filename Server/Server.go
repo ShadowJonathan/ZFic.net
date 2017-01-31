@@ -20,6 +20,7 @@ func main() {
 	ZF.HandleFunc("/f", ZFic.Fic)       // story handler, aka fanfiction
 
 	ZF.HandleFunc("/static", ZFic.Static()) // the css and other shit >.> (probably images and stuff)
+	fmt.Println("Starting server...")
 
 	log.Fatal(http.ListenAndServe(":8080", ZF))
 }

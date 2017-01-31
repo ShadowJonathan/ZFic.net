@@ -15,8 +15,11 @@ func main() {
 		fmt.Println("Error Loading Server: " + y)
 	}
 	ZF := http.NewServeMux()
-	ZF.HandleFunc("/", ZFic.MainPage)
+	ZF.HandleFunc("/", ZFic.MainPage())
 	ZF.HandleFunc("/a", ZFic.Archive)
 	ZF.HandleFunc("/f", ZFic.Fic)
-	log.Fatal(http.ListenAndServe(":80", ZF))
+
+	ZF.HandleFunc("/static", ZFic.Static())
+
+	log.Fatal(http.ListenAndServe(":8080", ZF))
 }

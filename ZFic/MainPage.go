@@ -1,10 +1,7 @@
 package ZFic
 
-import (
-	"io"
-	"net/http"
-)
+import "net/http"
 
-func MainPage(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "hello, world!\n") // yes, its just for testing purposes >.>
+func MainPage() func(w http.ResponseWriter, r *http.Request) {
+	return http.FileServer(http.Dir(webroot)).ServeHTTP
 }

@@ -17,6 +17,6 @@ func main() {
 	ZF := http.NewServeMux()
 	ZF.HandleFunc("/", ZFic.MainPage)
 	ZF.HandleFunc("/a", ZFic.Archive)
-	ZF.HandleFunc("/f", )
+	ZF.HandleFunc("/f", ZFic.Fic)
 	log.Fatal(http.ListenAndServe(":80", ZF))
 }

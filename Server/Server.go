@@ -10,9 +10,10 @@ import (
 )
 
 func main() {
-	Sucess, y := ZFic.Load()
+	Sucess, y, ZFIC := ZFic.Load()
 	if !Sucess {
-		fmt.Println("Error Loading Server: " + y)
+		log.Fatal("Error Loading Server: " + y)
+		return
 	}
 	ZF := http.NewServeMux()
 	ZF.HandleFunc("/", ZFic.MainPage()) // the front page
@@ -22,5 +23,5 @@ func main() {
 	ZF.HandleFunc("/static", ZFic.Static()) // the css and other shit >.> (probably images and stuff)
 	fmt.Println("Starting server...")
 
-	log.Fatal(http.ListenAndServe(":8080", ZF))
+	log.Fatal(http.ListenAndServe(ZFIC.address+":"+ZFIC.port, ZF))
 }

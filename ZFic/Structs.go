@@ -2,10 +2,17 @@ package ZFic
 
 import "time"
 
+//server
+
 type ServerConfig struct {
 	Archiveworker bool  // is worker working, yes/no
 	Stories       int64 // total ampunt of stories overall
 	AWQ           chan ARequest
+}
+
+type HttpServer struct {
+	port string
+	address string
 }
 
 //request
@@ -44,7 +51,6 @@ type Story struct { //this is what will be saved in an archive in an array
 	Chapters      []*StoryChapter
 	ChapCount     int `json:"CC"`
 	Tags          []*StoryTag
-	TagCount      int `json:"TC"`
 	Published     TimeandDate
 	IsUpdatedOnce bool        `json:"IUO"`
 	Updated       TimeandDate `json:",omitempty"`

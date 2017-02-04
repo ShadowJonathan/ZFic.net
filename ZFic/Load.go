@@ -1,16 +1,26 @@
 package ZFic
 
-var webroot string
-var fileroot string
-var Serv *ServerConfig
+import (
+	"fmt"
+)
 
-func Load() (bool, string) {
-	webroot = "../ZFic/WebPages"
-	fileroot = "..ZFic/Files"
+var Serv *ServerConfig
+var ZFIC *HttpServer
+
+func Load() (*HttpServer, error) {
+	Archive, err := GetArchive()
+	ProduceMainPage()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	Serv = &ServerConfig{
 		Archiveworker: false,
-		Stories:       len(GetArchive()),
+		Stories:       int64(len(Archive)),
 		AWQ:           make(chan ARequest, 100),
 	}
-	return true, ""
+	ZFIC = &HttpServer{
+		port:    "8080",
+		address: "",
+	}
+	return ZFIC, err
 }

@@ -1,2 +1,4 @@
 ZFic/WebPages/*
 Zfic/Files/*.md
+Zfic/Files/*.Ar
+!ZFic/Files/MP.md

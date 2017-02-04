@@ -11,9 +11,12 @@ type ServerConfig struct {
 }
 
 type HttpServer struct {
-	port string
+	port    string
 	address string
 }
+
+func (h *HttpServer) Port() string    { return h.port }
+func (h *HttpServer) Address() string { return h.address }
 
 //request
 

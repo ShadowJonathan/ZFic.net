@@ -9,7 +9,6 @@ var ZFIC *HttpServer
 
 func Load() (*HttpServer, error) {
 	Archive, err := GetArchive()
-	ProduceMainPage()
 	if err != nil {
 		fmt.Println(err.Error())
 	}

@@ -151,3 +151,18 @@ type Biography struct {
 	Content     string //markdown
 	Lastupdated TimeandDate
 }
+
+// template construct
+
+type TopLayer struct {
+	TP        string
+	Inception bool      `json:"i"`
+	I         *sublayer `json:",omitempty"`
+}
+
+type sublayer struct {
+	TP        string
+	Inception bool      `json:"i"`
+	I         *sublayer `json:",omitempty"`
+	IsMD      bool      `json:"isMD,omitempty"`
+}

@@ -18,7 +18,7 @@ func Load() (*HttpServer, error) {
 		AWQ:           make(chan ARequest, 100),
 	}
 	ZFIC = &HttpServer{
-		port:    "8080",
+		port:    "80",
 		address: "",
 	}
 	return ZFIC, err

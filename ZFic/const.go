@@ -5,5 +5,6 @@ const webroot = ZFroot + "/WebPages"
 const fileroot = ZFroot + "/Files"
 
 const tp = ZFroot + "/TP"
-const MPTP = tp + "/MainPage.html"
-const MP = webroot + "/MainPage.html"
+const Menu = tp + "/Menu.html"
+const MP = fileroot + "/MainPage.icfg"
+const Mainpagehtml = webroot + "/index.html"

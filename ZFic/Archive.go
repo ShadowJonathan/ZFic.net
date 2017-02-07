@@ -16,7 +16,7 @@ func GetArchive() ([]*Story, error) {
 	var Emerr error
 	Stories, err := ioutil.ReadFile(fileroot + "/Stories.Ar")
 	if err != nil {
-		// stuff here
+		fmt.Println(err)
 	}
 	err = json.Unmarshal(Stories, stories)
 	if err == nil {

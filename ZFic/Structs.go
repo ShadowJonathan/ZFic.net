@@ -133,12 +133,16 @@ type UserTag struct {
 type User struct {
 	ID       int
 	Name     string
-	nick     string `json:",omitempty"`
-	Email    string
+	Nick     string `json:",omitempty"`
+	Username string
 	Password string
-	avatar   string    //path in /avatars/
+	Avatar   string    `json:",omitempty"` //path in /pic/<id>/
 	Stories  []int     `json:",omitempty"`
 	Bio      Biography `json:",omitempty"`
+}
+
+type Users struct {
+	Users []*User
 }
 
 type Author struct {
@@ -150,6 +154,11 @@ type Author struct {
 type Biography struct {
 	Content     string //markdown
 	Lastupdated TimeandDate
+}
+
+type Session struct {
+	UserID  string
+	Expires time.Time
 }
 
 // template construct

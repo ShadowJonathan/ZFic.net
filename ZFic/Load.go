@@ -6,9 +6,14 @@ import (
 
 var Serv *ServerConfig
 var ZFIC *HttpServer
+var DB = &[]*User{}
+var Sesses *map[string]*Session
 
 func Load() (*HttpServer, error) {
 	Archive, err := GetArchive()
+	LoadDataBase()
+	LoadSessions()
+	StartReaper()
 	if err != nil {
 		fmt.Println(err.Error())
 	}

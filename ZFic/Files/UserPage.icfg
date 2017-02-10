@@ -1,0 +1,14 @@
+{
+    "TP": "/Menu.html",
+    "i": true,
+    "I": {
+        "TP": "/TP/UserContainer.html",
+        "i": true,
+        "isMD": false,
+        "I": {
+            "TP": "/TP/UserPage.html",
+            "i": false,
+            "isMD": false
+        }
+    }
+}

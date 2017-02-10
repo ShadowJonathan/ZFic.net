@@ -40,3 +40,19 @@ func ReapLoop() {
 		Reap()
 	}
 }
+
+func DieDieDie() int {
+	var Dead []string
+	var Sessions = *Sesses
+	for s, _ := range Sessions {
+		Dead = append(Dead, s)
+	}
+	var sescount = len(Dead)
+	if len(Dead) > 0 {
+		for _, name := range Dead {
+			delete(Sessions, name)
+			fmt.Println(name + " has been killed with many others")
+		}
+	}
+	return sescount
+}

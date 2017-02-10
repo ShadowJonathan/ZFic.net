@@ -3,6 +3,7 @@
 
 <HEAD>
     <TITLE>ZFic archive</TITLE>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
         function getCookie(cname) {
             var name = cname + "=";
@@ -20,6 +21,7 @@
             return "";
         }
         var XUNAME = false;
+        var col = false;
         /* user agent shit */
         var isAndroid = (/android|kindle|silk/i.test(navigator.userAgent.toLowerCase()));
         var isKindle = (/kindle|silk/i.test(navigator.userAgent.toLowerCase()));
@@ -33,9 +35,16 @@
         if (getCookie("zfun")) {
             XUNAME = urldecode(getCookie("zfun"))
         }
+        if (getCookie("zfcol")) {
+            col = urldecode(getCookie("zfcol"))
+        }
 
         function render_login(uname) {
-            var s = "<a href='/login/' style='color:orange;'>" + uname + "</a> | <a href='/logout/ ' style='color:white; '>Log out</a>";
+            if (col) {
+                var s = "<a href='/login/' style='color:" + col + ";'>" + uname + "</a> | <a href='/logout/ ' style='color:white; '>Log out</a>";
+            } else {
+                var s = "<a href='/login/' style='color:orange;'>" + uname + "</a> | <a href='/logout/ ' style='color:white; '>Log out</a>";
+            }
             return s;
         }
 
@@ -46,12 +55,10 @@
     <link rel='stylesheet' href='/static/css/ZFIC.css'>
 </HEAD>
 
-<BODY style='background-color:#E4E3D5;margin-top:0px;margin: 0'>
+<BODY style='background-color:#ece9df;margin-top:0px;margin: 0'>
     <!-- top menu -->
     <div id=top class=menu>
-        <div class='menulink maxwidth' style="
-            padding: 0.5em 10px 0.5em 10px;
-            vertical-align: middle;width: auto">
+        <div class='topbar menulink maxwidth'>
             <!-- <img src="ZF.png" alt="Z" height=20> -->
             <a href=' / ' style='font-size:1.1em;border:none '>ZFic</a>
             <span id=login class=pull-right>

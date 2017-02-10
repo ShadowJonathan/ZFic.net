@@ -1,0 +1,14 @@
+{
+    "TP": "/Menu.html",
+    "i": true,
+    "I": {
+        "TP": "/TP/LogContainer.html",
+        "i": true,
+        "isMD": false,
+        "I": {
+            "TP": "/TP/BadLogin.html",
+            "i": false,
+            "isMD": false
+        }
+    }
+}

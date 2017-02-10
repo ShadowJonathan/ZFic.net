@@ -152,13 +152,25 @@ type Author struct {
 }
 
 type Biography struct {
-	Content     string //markdown
+	Content     string
 	Lastupdated TimeandDate
 }
 
 type Session struct {
 	UserID  string
 	Expires time.Time
+}
+
+// settings
+
+type SettingChange struct {
+	Type       int //0: name, 1:nickname, 2: Username, 3: Password, 4: Avatar, 5:	Biography
+	NameChange string
+	NickChange string
+	UNchange   string
+	PWchange   string
+	Avatar     string // path to avatar file after upload
+	BioChange  string
 }
 
 // template construct

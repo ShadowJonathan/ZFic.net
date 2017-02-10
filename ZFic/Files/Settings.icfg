@@ -1,0 +1,14 @@
+{
+    "TP": "/Menu.html",
+    "i": true,
+    "I": {
+        "TP": "/TP/Centered.html",
+        "i": true,
+        "isMD": false,
+        "I": {
+            "TP": "/TP/Settings.html",
+            "isMD": false,
+            "i": false
+        }
+    }
+}

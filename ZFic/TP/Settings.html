@@ -1,0 +1,39 @@
+<script>
+    $(document).on("click", ".show-hide-upload", function(a) {
+        a.preventDefault();
+        $(".popupform").addClass("visible");
+    });
+</script>
+
+<table width="100%" style="text-align: center;background: white">
+    <tbody>
+        <tr>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+        </tr>
+        <tr>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+        </tr>
+    </tbody>
+</table>
+<div><a id="button" href="#" class="show-hide-upload">Show/Hide</a></div>
+<!-- this one can be at the bottom -->
+<div class="popupform">
+    <fieldset class="upload" id="upload">
+        <form action="/getfile/" method="post" enctype="multipart/form-data" class="file">
+            <label for="file">New avatar:</label>
+            <input type="file" name="file" id="file">
+            <!-- *throws table* THIS IS OPPERTUNITY FOR CUSTOMIZATION, DAMMIT -->
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </fieldset>
+</div>

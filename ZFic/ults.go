@@ -30,11 +30,11 @@ func HandlePage(icfg string) []byte {
 	var Icfg = &TopLayer{}
 	err = json.Unmarshal(CFGDATA, Icfg)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	TL, err := ioutil.ReadFile(tp + Icfg.TP)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	var total []byte
 	if Icfg.Inception {
@@ -48,7 +48,7 @@ func HandlePage(icfg string) []byte {
 func HandleLayer(L *sublayer, UL []byte) []byte {
 	LAYER, err := ioutil.ReadFile(ZFroot + L.TP)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	var total []byte
 	if L.IsMD {
@@ -137,14 +137,16 @@ func GetNewSession(user string, w http.ResponseWriter) {
 		Ses.Expires = time.Now().AddDate(0, 0, 7) //sessions expire in 7 days
 		Sessions[s] = Ses
 		http.SetCookie(w, &http.Cookie{
-			Name:  "zfsn",
-			Value: s,
-			Path:  "/",
+			Name:    "zfsn",
+			Value:   s,
+			Path:    "/",
+			Expires: time.Now().AddDate(0, 0, 7),
 		})
 		http.SetCookie(w, &http.Cookie{
-			Name:  "zfid",
-			Value: user,
-			Path:  "/",
+			Name:    "zfid",
+			Value:   user,
+			Path:    "/",
+			Expires: time.Now().AddDate(0, 0, 7),
 		})
 	}
 	SaveSessions()
@@ -199,4 +201,27 @@ func DeleteCookie(w http.ResponseWriter, r *http.Request, cookie string) {
 	c.Expires = Nulldate()
 	c.Path = "/"
 	http.SetCookie(w, c)
+}
+
+func HandleError(ErrorCode int, w http.ResponseWriter) {
+	switch ErrorCode {
+	case 404:
+		w.Write(HandlePage(fileroot + "/error/fourohfour.icfg"))
+	}
+}
+
+func GetFromSession(r *http.Request) (*User, bool) {
+	var EmUs = &User{}
+	SessionCookie, err := r.Cookie("zfsn")
+	if err != nil {
+		return EmUs, false
+	}
+	var Sessions = *Sesses
+	for a, b := range Sessions {
+		if a == SessionCookie.Value {
+			_, u := GetUserSimple(b.UserID)
+			return u, true
+		}
+	}
+	return EmUs, false
 }

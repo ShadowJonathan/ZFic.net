@@ -1,6 +1,9 @@
 package ZFic
 
-import "net/http"
+import (
+	"net/http"
+	"time"
+)
 
 func Login(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
@@ -25,6 +28,10 @@ func LogOut(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 307)
 }
 
+func SignUp(w http.ResponseWriter, r *http.Request) {
+	w.Write(HandlePage(SU))
+}
+
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	u := r.FormValue("UN")
 	p := r.FormValue("PW")
@@ -36,9 +43,10 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, "/login/?status=bad", 307)
 		} else {
 			c := &http.Cookie{
-				Name:  "zfun",
-				Value: U.Username,
-				Path:  "/",
+				Name:    "zfun",
+				Value:   U.Username,
+				Path:    "/",
+				Expires: time.Now().AddDate(0, 0, 7),
 			}
 			http.SetCookie(w, c)
 			GetNewSession(GSFI(U.ID), w)

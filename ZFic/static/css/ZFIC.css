@@ -6,61 +6,88 @@
     font-style: normal
 }
 
+.login input[type="text"],
+.login input[type="password"] {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    border-style: ridge;
+}
+
+.login .top {
+    background-color: #e5e5e5;
+    padding: 8px;
+    text-align: left;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid darkgray
+}
+
+.login .signup {
+    color: blue;
+    text-decoration: none;
+}
+
+.login a.signup:hover {
+    text-shadow: -1px 0 3px white, 0 1px 3px white, 1px 0 3px white, 0 -1px 3px white;
+}
+
 .user {
     width: 75%;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    background: white
+    background: white;
+    border-radius: 10px;
 }
 
-@media only screen and (max-width:800px) {
-    .user {
-        width: 600px;
-        margin-left: auto;
-        margin-right: auto
-    }
+.login {
+    text-align: center;
+    width: 400px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-radius: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: darkgray;
+    border-width: 2px;
+    border-style: ridge;
+    box-shadow: 1px 2px 10px 0.5px #888888;
 }
 
-@media only screen and (max-width:600px) {
-    .user {
-        width: 400px;
-        margin-left: auto;
-        margin-right: auto
-    }
+.login .title {
+    background: white;
+    border: 1px solid grey;
+    border-radius: 2px
 }
 
-@media only screen and (max-width:400px) {
-    .user {
-        width: auto;
-        margin-left: auto;
-        margin-right: auto
-    }
-    .avatar-userpage {
-        width: 60px
-    }
-}
-
-@media only screen and (max-width:300px) {
-    .user {
-        width: 300px;
-        margin-left: auto;
-        margin-right: auto
-    }
-    .avatar-userpage {
-        width: 60px
-    }
+.biography {
+    -webkit-margin-left: 134px;
+    margin-left: 134px;
 }
 
 .avatar-userpage {
-    margin-right: 8px;
     padding: 2px;
     border: 1px solid black;
     border-radius: 4px;
+    float: left;
+    width: 120px;
 }
 
 .usertitle {
     -webkit-margin-before: 0.1em;
     -webkit-margin-after: 0.1em;
+}
+
+.biotime {
+    -webkit-margin-left: 134px;
+    margin-left: 134px;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-before: 1em;
 }
 
 .menulink {
@@ -69,6 +96,52 @@
     background: transparent;
     letter-spacing: .5px;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.popupform {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(170, 170, 170, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+}
+
+.popupform.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.upload {
+    text-align: center;
+    width: auto;
+    background: white;
+    border-radius: 2px;
+    border-radius: 10px;
+    padding: 7px;
+    border: darkgray;
+    border-width: 2px;
+    border-style: ridge;
+    box-shadow: 1px 2px 10px 0.5px #888888;
+    -webkit-transition: visibility 0s, opacity 0.5s linear;
+    -moz-transition: visibility 0s, opacity 0.5s linear;
+    transition: visibility 0s, opacity 0.5s linear;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 4em auto;
+    background: #FFF;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.upload .file {
+    display: inline-block;
+    margin-bottom: 0;
 }
 
 .menulink a:visited,
@@ -119,4 +192,85 @@
     text-transform: none;
     line-height: 1em;
     margin-left: .2em;
+}
+
+.topbar {
+    padding: 0.5em 10px 0.5em 10px;
+    vertical-align: middle;
+    width: auto;
+}
+
+@media only screen and (min-width:1000px) {
+    .login {
+        margin-top: 50px
+    }
+}
+
+@media only screen and (max-width:800px) {
+    .user {
+        width: 600px;
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .user {
+        width: 500px;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .user {
+        width: 400px;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto
+    }
+}
+
+@media only screen and (max-width:400px) {
+    .user {
+        width: auto;
+        margin-top: 3px;
+        margin-left: auto;
+        margin-right: auto
+    }
+    .avatar-userpage {
+        width: 60px
+    }
+    .biography {
+        -webkit-margin-left: 74px;
+        margin-left: 74px;
+    }
+    .biotime {
+        margin-left: 68px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width:300px) {
+    .user {
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto
+    }
+    .avatar-userpage {
+        width: 60px
+    }
+    .biography {
+        -webkit-margin-left: 74px;
+        margin-left: 74px;
+    }
+    .biotime {
+        margin-left: 68px;
+        text-align: center;
+    }
+    .topbar {
+        width: 300px;
+    }
 }

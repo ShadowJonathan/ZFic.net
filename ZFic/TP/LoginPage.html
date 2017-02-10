@@ -1,12 +1,15 @@
 <form action="/login/" method="post">
-    <fieldset>
-        <legend>Login credicals:</legend>
-        Username:
+    <fieldset class="login" style="-webkit-padding-before: 0em;
+    -webkit-padding-start: 0em;
+    -webkit-padding-end: 0em;">
+        <div class="top">Please enter your login details...
+            <div class="pull-right">...or <a href="/signup/" class="signup">sign up</a></div>
+        </div>
         <br>
-        <input type="text" name="UN">
-        <br> Password:
+        <input type="text" name="UN" placeholder="Username">
         <br>
-        <input type="password" name="PW">
+        <br>
+        <input type="password" name="PW" placeholder="Password">
         <br>
         <br>
         <input type="submit" value="Login">

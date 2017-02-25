@@ -19,6 +19,10 @@
             transition: all .2s ease-in-out;
         }
 
+        .featuredlist .listtab p {
+            margin: 0;
+        }
+
         .featuredlist .listtab:hover {
             -webkit-transform: scale(1.05, 1.05);
             -moz-transform: scale(1.05, 1.05);
@@ -31,15 +35,32 @@
             border-radius: 5px;
         }
 
+        @media only screen
+        and (min-device-width: 320px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            .featuredlist .listtab:hover {
+                -webkit-transform: none;
+                -moz-transform: none;
+                -ms-transform: none;
+                -o-transform: none;
+                transform: none;
+                border: 1px solid black;
+                border-bottom: 0;
+                border-radius: 0;
+            }
+        }
+
         .featuredlist .listtab.chosenone {
             box-shadow: inset 0 0 10px 10px darkgray;
         }
+
 
     </style>
     <script>
         (function (window, $) {
             $(function () {
-                var currenttab = -1;
+                var Currenttab = -1;
+                var Hasclicked = false;
 
                 function GetTab(id) {
                     switch (id) {
@@ -97,8 +118,8 @@
                 }
 
                 $('.listtab').on('click', function (event) {
+                    Hasclicked = true;
                     var v = $(this).parent().prop('id');
-                    console.log(v);
                     switchto(GetTab(v));
 
                 });
@@ -107,17 +128,16 @@
                 });
 
                 function switchto(tab) {
-                    if (tab != currenttab) {
-                        $('#' + GetID(currenttab)).find('.listtab').removeClass('chosenone');
+                    if (tab != Currenttab) {
+                        $('#' + GetID(Currenttab)).find('.listtab').removeClass('chosenone');
                         $("#" + GetID(tab)).find('.listtab').addClass('chosenone');
-                        currenttab = tab;
+                        Currenttab = tab;
                         OpenStory(tab);
-                        console.log("Switched");
-                        console.log(GetID(tab));
-                        console.log(GetID(currenttab));
                     }
                 }
+
                 var storyopened = -1;
+
                 function OpenStory(story) {
                     if (story != storyopened) {
                         /* story is int */
@@ -126,6 +146,21 @@
                         storyopened = story;
                     }
                 }
+
+                setTimeout(function () {
+                    setInterval(function () {
+                        if (!Hasclicked) {
+                            if (Currenttab != 9) {
+                                switchto(Currenttab + 1)
+                            } else {
+                                switchto(0)
+                            }
+                        } else {
+                            console.log("Skipped");
+                            Hasclicked = false;
+                        }
+                    }, 7500);
+                }, 10000)
             });
         })(window, jQuery);
 

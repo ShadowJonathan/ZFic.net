@@ -4,11 +4,13 @@ import (
 	"fmt"
 )
 
+//noinspection GoUnusedGlobalVariable
 var Serv *ServerConfig
-var ZFIC *HttpServer
+var ZFServ *HttpServer
 var DB = &[]*User{}
 var Sesses *map[string]*Session
 
+//noinspection GoUnusedExportedFunction
 func Load() (*HttpServer, error) {
 	Archive, err := GetArchive()
 	LoadDataBase()
@@ -22,9 +24,9 @@ func Load() (*HttpServer, error) {
 		Stories:       int64(len(Archive)),
 		AWQ:           make(chan ARequest, 100),
 	}
-	ZFIC = &HttpServer{
-		port:    "80",
+	ZFServ = &HttpServer{
+		port:    "9000",
 		address: "",
 	}
-	return ZFIC, err
+	return ZFServ, err
 }

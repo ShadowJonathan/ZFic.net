@@ -5,6 +5,7 @@ import "net/http"
 import "strings"
 import "bytes"
 
+//noinspection GoUnusedExportedFunction
 func UserPage(w http.ResponseWriter, r *http.Request) {
 	page := r.URL.Path
 	if page == "/u/" {
@@ -33,6 +34,7 @@ func GetUserPage(user string, w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//noinspection GoUnusedExportedFunction
 func UserSettingsPage(w http.ResponseWriter, r *http.Request) {
 	w.Write(HandlePage(SP))
 	/*page := HandlePage(SP)

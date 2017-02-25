@@ -1,0 +1,171 @@
+<div>
+    <style>
+        .featuredlist .listtab {
+            height: 20px;
+            background: grey;
+        }
+
+        table#featured {
+            border-spacing: 0;
+            border: 1px black;
+            width: 100%;
+        }
+
+        .featuredlist .listtab {
+            width: 33%;
+            border: 1px solid black;
+            border-bottom: 0;
+            padding-left: 4px;
+            transition: all .2s ease-in-out;
+        }
+
+        .featuredlist .listtab:hover {
+            -webkit-transform: scale(1.05, 1.05);
+            -moz-transform: scale(1.05, 1.05);
+            -ms-transform: scale(1.05, 1.05);
+            -o-transform: scale(1.05, 1.05);
+            transform: scale(1.05, 1.05);
+            border: 0px solid grey;
+            cursor: pointer;
+
+            border-radius: 5px;
+        }
+
+        .featuredlist .listtab.chosenone {
+            box-shadow: inset 0 0 10px 10px darkgray;
+        }
+
+    </style>
+    <script>
+        (function (window, $) {
+            $(function () {
+                var currenttab = -1;
+
+                function GetTab(id) {
+                    switch (id) {
+                        case "0":
+                            return 0;
+                        case "1":
+                            return 1;
+                        case "2":
+                            return 2;
+                        case "3":
+                            return 3;
+                        case "4":
+                            return 4;
+                        case "5":
+                            return 5;
+                        case "6":
+                            return 6;
+                        case "7":
+                            return 7;
+                        case "8":
+                            return 8;
+                        case "9":
+                            return 9;
+                    }
+                }
+
+                /**
+                 * @return {string}
+                 */
+                function GetID(tab) {
+                    switch (tab) {
+                        case 0:
+                            return "0";
+                        case 1:
+                            return "1";
+                        case 2:
+                            return "2";
+                        case 3:
+                            return "3";
+                        case 4:
+                            return "4";
+                        case 5:
+                            return "5";
+                        case 6:
+                            return "6";
+                        case 7:
+                            return "7";
+                        case 8:
+                            return "8";
+                        case 9:
+                            return "9";
+                        case 10:
+                            return "10";
+                    }
+                }
+
+                $('.listtab').on('click', function (event) {
+                    var v = $(this).parent().prop('id');
+                    console.log(v);
+                    switchto(GetTab(v));
+
+                });
+                $(window).on("load", function () {
+                    switchto(0)
+                });
+
+                function switchto(tab) {
+                    if (tab != currenttab) {
+                        $('#' + GetID(currenttab)).find('.listtab').removeClass('chosenone');
+                        $("#" + GetID(tab)).find('.listtab').addClass('chosenone');
+                        currenttab = tab;
+                        OpenStory(tab);
+                        console.log("Switched");
+                        console.log(GetID(tab));
+                        console.log(GetID(currenttab));
+                    }
+                }
+                var storyopened = -1;
+                function OpenStory(story) {
+                    if (story != storyopened) {
+                        /* story is int */
+                        $('#tab' + GetID(storyopened + 1)).removeClass('visible');
+                        $('#tab' + GetID(story + 1)).addClass('visible');
+                        storyopened = story;
+                    }
+                }
+            });
+        })(window, jQuery);
+
+
+    </script>
+    <table id="featured" style="border: 1px black;">
+        <tr id=0 class="featuredlist">
+            <td class="listtab">TPD1</td>
+            <td rowspan="10" style="vertical-align: top">
+                <div id="featuredstory" style="position: relative">
+                    TPD2
+                </div>
+            </td>
+        </tr>
+        <tr id=1 class="featuredlist">
+            <td class="listtab">TPD3</td>
+        </tr>
+        <tr id=2 class="featuredlist">
+            <td class="listtab">TPD4</td>
+        </tr>
+        <tr id=3 class="featuredlist">
+            <td class="listtab">TPD5</td>
+        </tr>
+        <tr id=4 class="featuredlist">
+            <td class="listtab">TPD6</td>
+        </tr>
+        <tr id=5 class="featuredlist">
+            <td class="listtab">TPD7</td>
+        </tr>
+        <tr id=6 class="featuredlist">
+            <td class="listtab">TPD8</td>
+        </tr>
+        <tr id=7 class="featuredlist">
+            <td class="listtab">TPD9</td>
+        </tr>
+        <tr id=8 class="featuredlist">
+            <td class="listtab">TPD10</td>
+        </tr>
+        <tr id=9 class="featuredlist">
+            <td class="listtab" style="border-bottom: 1px">TPD11</td>
+        </tr>
+    </table>
+</div>

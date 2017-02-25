@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+//noinspection GoUnusedExportedFunction
 func Login(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		w.Write(HandlePage(LP))
@@ -17,6 +18,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//noinspection GoUnusedExportedFunction
 func LogOut(w http.ResponseWriter, r *http.Request) {
 	Sess, err := r.Cookie("zfsn")
 	if err == nil {
@@ -28,6 +30,7 @@ func LogOut(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 307)
 }
 
+//noinspection GoUnusedExportedFunction
 func SignUp(w http.ResponseWriter, r *http.Request) {
 	w.Write(HandlePage(SU))
 }

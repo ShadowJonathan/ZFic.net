@@ -39,6 +39,7 @@ func main() {
 
 	if Show() {
 		ZF.HandleFunc("/show/", ZFic.ShowRoom)
+		ZF.HandleFunc("/aoz/", ZFic.AoZ)
 	}
 
 	log.Fatal(http.ListenAndServe(ZFIC.Address()+":"+ZFIC.Port(), ZF))

@@ -1,0 +1,65 @@
+<style>
+    #mainbody {
+        height: 1000px;
+        width: auto;
+        margin: auto
+    }
+
+    #featured {
+        width: 550px;
+        height: 200px;
+        min-width: 300px;
+        background: lightgrey;
+    }
+
+    #news {
+        width: 200px;
+        height: auto;
+        min-width: 150px;
+        background: green
+    }
+
+    #tabs {
+        width: 500px;
+        height: auto;
+        min-width: 300px;
+        background: blue
+    }
+
+    @media only screen and (max-width: 550px) {
+        #news {
+            display: none;
+        }
+    }
+
+    @media only screen
+    and (min-device-width: 320px)
+    and (max-device-width: 480px)
+    or (max-device-width: 568px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+        #news {
+            display: none;
+        }
+    }
+</style>
+<table id=mainbody>
+    <tr>
+        <td id=featured style="padding: 0">
+            TPD1
+        </td>
+        <td id=news rowspan="2">
+            TPD2
+        </td>
+    </tr>
+    <tr>
+        <td id=tabs>
+            TPD3
+        </td>
+    </tr>
+</table>
+
+<!--
+    F | N
+    - | N 
+    T | N
+-->

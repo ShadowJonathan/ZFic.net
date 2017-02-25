@@ -44,7 +44,7 @@ func ReapLoop() {
 func DieDieDie() int {
 	var Dead []string
 	var Sessions = *Sesses
-	for s, _ := range Sessions {
+	for s := range Sessions {
 		Dead = append(Dead, s)
 	}
 	var sescount = len(Dead)

@@ -70,7 +70,7 @@ type StoryTag struct { //used in an array in the archive file, reference tag
 	CharID    int `json:",omitempty"`
 	UDTID     int `json:",omitempty"` //id for user defined tag
 	GDTID     int `json:",omitempty"` //id for globally defined tag
-	rating    int `json:",omitempty"` // 0: everyone, 1: teen, 2: mature
+	Rating    int `json:",omitempty"` // 0: everyone, 1: teen, 2: mature
 	SpecialID int `json:"SID,omitempty"`
 }
 
@@ -100,7 +100,7 @@ type StoryStats struct {
 
 type Review struct {
 	ID        int    `json:",omitempty"`
-	anon      bool   `json:",omitempty"`
+	Anon      bool   `json:",omitempty"`
 	Title     string `json:",omitempty"`
 	Content   string
 	Posted    TimeandDate
@@ -117,8 +117,8 @@ type GlobalTag struct {
 type SpecialTag struct {
 	ID     int
 	name   string
-	mature bool `json:",omitempty"`
-	gore   bool `json:",omitempty"`
+	Mature bool `json:",omitempty"`
+	Gore   bool `json:",omitempty"`
 }
 
 type UserTag struct {
@@ -176,14 +176,18 @@ type SettingChange struct {
 // template construct
 
 type TopLayer struct {
-	TP        string
-	Inception bool      `json:"i"`
-	I         *sublayer `json:",omitempty"`
+	TP             string
+	Inception      bool        `json:"i,omitempty"`
+	I              *sublayer   `json:",omitempty"`
+	MultiInception bool        `json:"mi,omitempty"`
+	MI             []*sublayer `json:",omitempty"`
 }
 
 type sublayer struct {
-	TP        string
-	Inception bool      `json:"i"`
-	I         *sublayer `json:",omitempty"`
-	IsMD      bool      `json:"isMD,omitempty"`
+	TP             string
+	Inception      bool        `json:"i,omitempty"`
+	I              *sublayer   `json:",omitempty"`
+	IsMD           bool        `json:"isMD,omitempty"`
+	MultiInception bool        `json:"mi,omitempty"`
+	MI             []*sublayer `json:",omitempty"`
 }

@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+//noinspection GoUnusedExportedFunction
 func Archive(w http.ResponseWriter, r *http.Request) {
 
 }

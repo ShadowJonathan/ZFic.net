@@ -30,7 +30,7 @@
         var isIphone = (/iphone|ipod/i.test(navigator.userAgent.toLowerCase()));
         var isVista = navigator.userAgent.match(/nt 6\.0/gi);
         var isXp = navigator.userAgent.match(/nt 5/gi);
-        var isMobile = isAndroid || isIpad || isIphone || isGenericMobile ? true : false;
+        var isMobile = isAndroid || isIpad || isIphone || isGenericMobile;
         /* end UA shit */
         if (getCookie("zfun")) {
             XUNAME = urldecode(getCookie("zfun"))
@@ -55,7 +55,7 @@
     <link rel='stylesheet' href='/static/css/ZFIC.css'>
 </HEAD>
 
-<BODY style='background-color:#ece9df;margin-top:0px;margin: 0'>
+<BODY style='background-color:#ece9df;margin: 0;'>
     <!-- top menu -->
     <div id=top class=menu>
         <div class='topbar menulink maxwidth'>
@@ -74,5 +74,5 @@
     </div>
     <!-- top menu end -->
     TPDATA
-
+</BODY>
 </HTML>

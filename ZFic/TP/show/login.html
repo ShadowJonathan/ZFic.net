@@ -1,10 +1,85 @@
 <div id="load-outer-wrapper">
     <div id="load-inner-wrapper">
-        <div id="login-window">
+        <div id="login-window" class="login-window">
+
             <!--"signup"-->
-            <form>
+            <script>
+                (function (window, $) {
+
+                    $(function () {
+
+
+                        $('.ripple').on('click', function (event) {
+                            event.preventDefault();
+
+                            var $div = $('<div/>'),
+                                btnOffset = $(this).parent().offset(),
+                                xPos = event.pageX - btnOffset.left,
+                                yPos = event.pageY - btnOffset.top;
+
+                            var ani = $('#load-animation');
+
+
+                            $div.addClass('ripple-effect');
+                            var $ripple = $(".ripple-effect");
+                            $div
+                                .css({
+                                    top: yPos - ($ripple.height() / 2),
+                                    left: xPos - ($ripple.width() / 2),
+                                    background: $(this).data("ripple-color")
+                                })
+                                .appendTo($(this));
+
+                            window.setTimeout(function () {
+                                //noinspection JSJQueryEfficiency
+                                $('#ani-over').removeClass('error');
+                                //noinspection JSJQueryEfficiency
+                                $('#ani-over').addClass('ani-over');
+                            }, 750);
+                            window.setTimeout(function () {
+                                $('#login-window').addClass('submitted');
+                            }, 900);
+                            window.setTimeout(function () {
+                                $div.remove();
+                                $('#username').addClass('minimal');
+                                $('#password').addClass('minimal');
+                                $('#login-form').find('p').addClass('minimal');
+                                ani.addClass('animate');
+                                ani.addClass('loading');
+                            }, 2150);
+                            TPDATA
+                        });
+
+                    });
+
+                })(window, jQuery);
+            </script>
+            <form action="/show/login" method="POST" id=login-form>
+                <p class="break"></p>
                 <input id=username type="text" name="UN" placeholder="Username">
+                <p class="break"></p>
+                <input id=password type="password" name="PW" placeholder="Password">
+                <p class=break></p>
+                <button id="login-button" class="ripple" data-ripple-color="#66ff66">login
+                    <div id=ani-over></div>
+                </button>
             </form>
+            <div id=load-wrapper style="position: absolute; left: 50%;">
+                <div id=load-animation>
+                    <div id=finished-wrapper>
+                        <svg class=checkmark xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class=checkmark__circle cx="26" cy="26" r="25" fill="none"/>
+                            <path class=checkmark__check fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                        <svg class=error xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class=error__circle cx="26" cy="26" r="25" fill="none"/>
+                            <line class="errorlineone" y1="14.25" x1="36.5" y2="35.75" x2="15.25" fill="none"/>
+                            <line class="errorlinetwo" transform="rotate(90 26,24.8125)" y2="14.25" x2="36.75"
+                                  y1="35.75" x1="15.25" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

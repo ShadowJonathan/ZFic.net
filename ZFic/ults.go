@@ -15,6 +15,8 @@ import (
 
 	"net/http"
 
+	"errors"
+
 	"github.com/russross/blackfriday"
 )
 
@@ -38,28 +40,48 @@ func HandlePage(icfg string) []byte {
 	}
 	var total []byte
 	if Icfg.Inception {
-		total = HandleLayer(Icfg.I, TL)
+		total = HandleLayer(Icfg.I, TL, 0)
+	} else if Icfg.MultiInception {
+		for i, L := range Icfg.MI {
+			total = HandleLayer(L, total, i)
+		}
 	} else {
 		total = TL
 	}
 	return total
 }
 
-func HandleLayer(L *sublayer, UL []byte) []byte {
+func HandleLayer(L *sublayer, UL []byte, inrange int) (total []byte) {
+	if L.TP == "" {
+		panic(errors.New("ERR_NO_TP_DEFINED"))
+	}
 	LAYER, err := ioutil.ReadFile(ZFroot + L.TP)
+	total = UL
 	if err != nil {
 		panic(err)
 	}
-	var total []byte
-	if L.IsMD {
-		total = bytes.Replace(UL, []byte("TPDATA"), GetMD(LAYER), 1)
+	if inrange == 0 {
+		if L.IsMD {
+			total = bytes.Replace(UL, []byte("TPDATA"), GetMD(LAYER), 1)
+		} else {
+			total = bytes.Replace(UL, []byte("TPDATA"), LAYER, 1)
+		}
 	} else {
-		total = bytes.Replace(UL, []byte("TPDATA"), LAYER, 1)
+		if L.IsMD {
+			total = bytes.Replace(UL, []byte("TPD"+GSFI(inrange)), GetMD(LAYER), 1)
+		} else {
+			total = bytes.Replace(UL, []byte("TPD"+GSFI(inrange)), LAYER, 1)
+		}
 	}
+
 	if L.Inception {
-		return HandleLayer(L.I, total)
+		total = HandleLayer(L.I, total, 0)
+	} else if L.MultiInception {
+		for i, l := range L.MI {
+			total = HandleLayer(l, total, i+1)
+		}
 	}
-	return total
+	return
 }
 
 func GetUser(username string, password string) (bool, *User) {
@@ -210,6 +232,7 @@ func HandleError(ErrorCode int, w http.ResponseWriter) {
 	}
 }
 
+//noinspection GoUnusedExportedFunction
 func GetFromSession(r *http.Request) (*User, bool) {
 	var EmUs = &User{}
 	SessionCookie, err := r.Cookie("zfsn")

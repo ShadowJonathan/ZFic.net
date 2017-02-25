@@ -1,3 +1,13 @@
 ZFic/WebPages/*
+
 ZFic/Files/*
+
+!ZFic/Files/*.icfg
+
+!ZFic/Files/*.md
+
 ZFic/pic/*
+
+Server/debug
+.idea/**
+*.DS_Store

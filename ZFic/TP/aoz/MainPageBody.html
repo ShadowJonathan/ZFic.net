@@ -1,44 +1,201 @@
 <style>
+
+    /*Everything below is general design*/
+
+    #tabs {
+        vertical-align: top;
+    }
+
+    #tabs .tabs {
+        position: relative;
+        white-space: normal;
+        z-index: 1;
+    }
+
+    #tabs .tabs span {
+        border: 1px solid black;
+        display: inline-block;
+        border-right: 0;
+        padding: 5px;
+        font-size: 19px;
+        cursor: pointer;
+    }
+
+    #tabs .tabs #new {
+        background: lime;
+    }
+
+    #tabs .tabs #pop {
+        background: darkorange;
+    }
+
+    #tabs .tabs #JU {
+        background: yellow;
+        border-right: 1px solid black;
+    }
+
+    #tabs .tabs #new.shown {
+        border-bottom: 1px solid lime;
+    }
+
+    #tabs .tabs #pop.shown {
+        border-bottom: 1px solid darkorange;
+    }
+
+    #tabs .tabs #JU.shown {
+        border-bottom: 1px solid yellow;
+    }
+
+    #tabs .content {
+        position: relative;
+        height: 100%;
+        top: -1px;
+        clear: both;
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    #tabs .content.new {
+        background: lime;
+    }
+
+    #tabs .content.pop {
+        background: darkorange;
+    }
+
+    #tabs .content.JU {
+        background: yellow;
+    }
+
+    #featuredstory {
+        font-family: Arial;
+    }
+
+    #featuredstory div {
+        opacity: 0;
+        margin-left: 4px;
+        transition: all 0.2s ease-in-out;
+        position: absolute;
+    }
+
+    #featuredstory div.visible {
+        opacity: 1;
+    }
+
+    #featuredstory div p {
+        margin:0;
+    }
+
+    .featuredlist:last-child .listtab {
+        border-bottom: 1px solid black;
+    }
+
+    table#featured {
+        border-spacing: 0;
+        border: 1px black;
+        width: 100%;
+    }
+
+    .featuredlist .listtab {
+        width: 25%;
+        border: 1px solid black;
+        border-bottom: 0;
+        padding-left: 4px;
+        transition: all .2s linear;
+        height: 30px;
+        background: grey;
+    }
+
+    .featuredlist .listtab p {
+        margin: 0;
+    }
+
+    .featuredlist .listtab:hover {
+        -webkit-transform: scale(1.05, 1.05);
+        -moz-transform: scale(1.05, 1.05);
+        -ms-transform: scale(1.05, 1.05);
+        -o-transform: scale(1.05, 1.05);
+        transform: scale(1.05, 1.05);
+        border: 0px solid grey;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .featuredlist .listtab.chosenone {
+        box-shadow: inset 0 0 30px 30px darkgray;
+    }
+
+    /*Everything below is for responsive design*/
+
+    #news{
+        display: none;
+    }
+
     #mainbody {
-        height: 1000px;
-        width: auto;
-        margin: auto
+        height: 92%;
+        width: 90%;
+        margin: auto;
     }
 
     #featured {
-        width: 550px;
-        height: 200px;
+        width: 70%;
         min-width: 300px;
+        height: 300px;
         background: lightgrey;
+
+        vertical-align: top;
     }
 
-    #news {
-        width: 200px;
-        height: auto;
-        min-width: 150px;
-        background: green
-    }
+    @media only screen and (min-width: 630px){
+        #mainbody {
+            width: 80%;
+        }
 
-    #tabs {
-        width: 500px;
-        height: auto;
-        min-width: 300px;
-        background: blue
-    }
-
-    @media only screen and (max-width: 550px) {
         #news {
-            display: none;
+            display: table-cell;
+            width: 30%;
+            min-width: 200px;
+            height: auto;
+            background: green
+        }
+    }
+
+    @media only screen and (min-width: 960px){
+        #mainbody {
+            width: 70%;
+            max-width: 1920px;
+        }
+
+        #news {
+            display: table-cell;
+            width: 30%;
+            min-width: 250px;
+            height: auto;
+            background: green
+        }
+
+        #tabs {
+            width: 30%;
+            height: auto;
+            background: whitesmoke;
         }
     }
 
     @media only screen
     and (min-device-width: 320px)
     and (-webkit-min-device-pixel-ratio: 2) {
-        #news {
-            display: none;
+        .featuredlist .listtab:hover {
+            -webkit-transform: none;
+            -moz-transform: none;
+            -ms-transform: none;
+            -o-transform: none;
+            transform: none;
+            border: 1px solid black;
+            border-bottom: 0;
+            border-radius: 0;
         }
     }
+
 </style>
 <table id=mainbody>
     <tr>

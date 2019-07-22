@@ -1,171 +1,161 @@
-<div>
-    <style>
-        .featuredlist .listtab {
-            height: 20px;
-            background: grey;
+<style>
+    #nonmobile {
+        display: none;
+    }
+
+    @media only screen and (min-width: 630px){
+        #nonmobile {
+            display: block;
         }
-
-        table#featured {
-            border-spacing: 0;
-            border: 1px black;
-            width: 100%;
+        #mobile {
+            display: none;
         }
+    }
+</style>
+<script>
+    (function (window, $) {
+        $(function () {
+            var Currenttab = -1;
+            var Hasclicked = false;
 
-        .featuredlist .listtab {
-            width: 33%;
-            border: 1px solid black;
-            border-bottom: 0;
-            padding-left: 4px;
-            transition: all .2s ease-in-out;
-        }
-
-        .featuredlist .listtab p {
-            margin: 0;
-        }
-
-        .featuredlist .listtab:hover {
-            -webkit-transform: scale(1.05, 1.05);
-            -moz-transform: scale(1.05, 1.05);
-            -ms-transform: scale(1.05, 1.05);
-            -o-transform: scale(1.05, 1.05);
-            transform: scale(1.05, 1.05);
-            border: 0px solid grey;
-            cursor: pointer;
-
-            border-radius: 5px;
-        }
-
-        @media only screen
-        and (min-device-width: 320px)
-        and (-webkit-min-device-pixel-ratio: 2) {
-            .featuredlist .listtab:hover {
-                -webkit-transform: none;
-                -moz-transform: none;
-                -ms-transform: none;
-                -o-transform: none;
-                transform: none;
-                border: 1px solid black;
-                border-bottom: 0;
-                border-radius: 0;
+            function GetTab(id) {
+                switch (id) {
+                    case "0":
+                        return 0;
+                    case "1":
+                        return 1;
+                    case "2":
+                        return 2;
+                    case "3":
+                        return 3;
+                    case "4":
+                        return 4;
+                    case "5":
+                        return 5;
+                    case "6":
+                        return 6;
+                    case "7":
+                        return 7;
+                    case "8":
+                        return 8;
+                    case "9":
+                        return 9;
+                }
             }
-        }
 
-        .featuredlist .listtab.chosenone {
-            box-shadow: inset 0 0 10px 10px darkgray;
-        }
-
-
-    </style>
-    <script>
-        (function (window, $) {
-            $(function () {
-                var Currenttab = -1;
-                var Hasclicked = false;
-
-                function GetTab(id) {
-                    switch (id) {
-                        case "0":
-                            return 0;
-                        case "1":
-                            return 1;
-                        case "2":
-                            return 2;
-                        case "3":
-                            return 3;
-                        case "4":
-                            return 4;
-                        case "5":
-                            return 5;
-                        case "6":
-                            return 6;
-                        case "7":
-                            return 7;
-                        case "8":
-                            return 8;
-                        case "9":
-                            return 9;
-                    }
+            /**
+             * @return {string}
+             */
+            function GetID(tab) {
+                switch (tab) {
+                    case 0:
+                        return "0";
+                    case 1:
+                        return "1";
+                    case 2:
+                        return "2";
+                    case 3:
+                        return "3";
+                    case 4:
+                        return "4";
+                    case 5:
+                        return "5";
+                    case 6:
+                        return "6";
+                    case 7:
+                        return "7";
+                    case 8:
+                        return "8";
+                    case 9:
+                        return "9";
+                    case 10:
+                        return "10";
                 }
+            }
 
-                /**
-                 * @return {string}
-                 */
-                function GetID(tab) {
-                    switch (tab) {
-                        case 0:
-                            return "0";
-                        case 1:
-                            return "1";
-                        case 2:
-                            return "2";
-                        case 3:
-                            return "3";
-                        case 4:
-                            return "4";
-                        case 5:
-                            return "5";
-                        case 6:
-                            return "6";
-                        case 7:
-                            return "7";
-                        case 8:
-                            return "8";
-                        case 9:
-                            return "9";
-                        case 10:
-                            return "10";
-                    }
-                }
-
-                $('.listtab').on('click', function (event) {
-                    Hasclicked = true;
-                    var v = $(this).parent().prop('id');
-                    switchto(GetTab(v));
-
-                });
-                $(window).on("load", function () {
-                    switchto(0)
-                });
-
-                function switchto(tab) {
-                    if (tab != Currenttab) {
-                        $('#' + GetID(Currenttab)).find('.listtab').removeClass('chosenone');
-                        $("#" + GetID(tab)).find('.listtab').addClass('chosenone');
-                        Currenttab = tab;
-                        OpenStory(tab);
-                    }
-                }
-
-                var storyopened = -1;
-
-                function OpenStory(story) {
-                    if (story != storyopened) {
-                        /* story is int */
-                        $('#tab' + GetID(storyopened + 1)).removeClass('visible');
-                        $('#tab' + GetID(story + 1)).addClass('visible');
-                        storyopened = story;
-                    }
-                }
-
-                setTimeout(function () {
-                    setInterval(function () {
-                        if (!Hasclicked) {
-                            if (Currenttab != 9) {
-                                switchto(Currenttab + 1)
-                            } else {
-                                switchto(0)
-                            }
-                        } else {
-                            console.log("Skipped");
-                            Hasclicked = false;
-                        }
-                    }, 7500);
-                }, 10000)
+            $('.listtab').on('click', function () {
+                Hasclicked = true;
+                var v = $(this).parent().prop('id');
+                switchto(GetTab(v));
             });
-        })(window, jQuery);
+
+            $('#featuredright').on('click', function () {
+                Hasclicked = true;
+                n()
+            });
+
+            $('#featuredleft').on('click', function () {
+                Hasclicked = true;
+                l()
+            });
+
+            $('#bullets').find('span').on('click', function (event) {
+                Hasclicked = true;
+                var v = $(this).prop('class');
+                switchto(GetTab(v));
+            });
 
 
-    </script>
+            $(window).on("load", function () {
+                switchto(0);
+                Storyopened = 0
+            });
+
+            function switchto(tab) {
+                if (tab != Currenttab) {
+                    $('#' + GetID(Currenttab)).find('.listtab').removeClass('chosenone');
+                    $("#" + GetID(tab)).find('.listtab').addClass('chosenone');
+                    b = $('#bullets');
+                    b.find('span.' + GetID(Currenttab)).removeClass('chosen');
+                    b.find("span." + GetID(tab)).addClass('chosen');
+                    Currenttab = tab;
+                    OpenStory(tab);
+                }
+            }
+
+            var Storyopened = -1;
+
+            function OpenStory(story) {
+                if (story != Storyopened) {
+                    /* story is int */
+                    $('.tab' + GetID(story + 1)).addClass('visible');
+                    $('.tab' + GetID(Storyopened + 1)).removeClass('visible');
+                    Storyopened = story;
+                }
+            }
+
+            var n = function() {
+                if (Currenttab != 9) {
+                    switchto(Currenttab + 1)
+                } else {
+                    switchto(0)
+                }
+            };
+
+            var l = function() {
+                if (Currenttab != 0) {
+                    switchto(Currenttab - 1)
+                } else {
+                    switchto(9)
+                }
+            };
+
+            setTimeout(function () {
+                setInterval(function () {
+                    if (!Hasclicked) {
+                        n()
+                    } else {
+                        console.log("Skipped");
+                        Hasclicked = false;
+                    }
+                }, 7500);
+            }, 10000)
+        });
+    })(window, jQuery);
+
+
+</script>
+<div id="nonmobile">
     <table id="featured" style="border: 1px black;">
         <tr id=0 class="featuredlist">
             <td class="listtab">TPD1</td>
@@ -200,7 +190,132 @@
             <td class="listtab">TPD10</td>
         </tr>
         <tr id=9 class="featuredlist">
-            <td class="listtab" style="border-bottom: 1px">TPD11</td>
+            <td class="listtab">TPD11</td>
         </tr>
     </table>
+</div>
+<div id="mobile">
+    <script>
+        (function (window, $) {
+            $(function () {
+                $(window).on("load", chain());
+
+                function chain() {
+                    $( "#featuredstory" ).clone().appendTo( "#mobilefeatured" );
+                }
+
+            });
+        })(window, jQuery);
+    </script>
+    <style>
+
+        #mobile .navbut {
+            font-family: Verdana,sans-serif;
+            height: 300px;
+            width: 50px;
+            margin: 0;
+            display: flex;
+            background: #e6e6e6;
+            color: black;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        #featuredleft {
+            float: left;
+        }
+
+        #featuredright {
+            float: right;
+        }
+
+        #mobilefeatured {
+            position: relative;
+            width: 100%;
+        }
+
+        #mobilefeatured #featuredstory {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+        #bullets {
+            position: absolute;
+            left: 50%;
+            bottom: -290px;
+            transform: translate(-50%,0%);
+            -ms-transform: translate(-50%,0%);
+        }
+
+        #bullets span {
+            text-align: center;
+            height: 13px;
+            width: 13px;
+            padding: 0;
+            cursor: pointer;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            font-size: 12px;
+            -webkit-transition: background-color .25s,color .15s,box-shadow .25s,opacity 0.25s,filter 0.25s,border 0.15s;
+            transition: background-color .25s,color .15s,box-shadow .15s,opacity .25s,filter .25s,border .15s;
+        }
+
+        #bullets span:hover {
+            background-color: darkgray;
+        }
+
+        #bullets span.chosen {
+            background-color: grey;
+        }
+
+        @media only screen
+        and (min-device-width: 320px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            #mobile .navbut {
+                width: 30px;
+                height: 200px;
+            }
+            #mobilefeatured #featuredstory {
+                margin-left: 30px;
+                margin-right: 30px;
+            }
+            #featuredstory div {
+                margin-right: 4px;
+                font-size: 4vw;
+            }
+            #featured {
+                height: 200px;
+            }
+            #bullets {
+                bottom: -195px;
+                left: 30.25%;
+                transform: translate(-12.5%,0%);
+                -ms-transform: translate(-12.5%,0%);
+            }
+            #bullets span {
+                height: 10px;
+                width: 10px;
+            }
+        }
+
+    </style>
+    <div id="featuredleft" class="navbut" onclick="">❮</div>
+    <div id="mobilefeatured">
+        <div id="bullets">
+            <span class="0"></span>
+            <span class="1"></span>
+            <span class="2"></span>
+            <span class="3"></span>
+            <span class="4"></span>
+            <span class="5"></span>
+            <span class="6"></span>
+            <span class="7"></span>
+            <span class="8"></span>
+            <span class="9"></span>
+        </div>
+    </div>
+    <div id="featuredright" class="navbut">❯</div>
 </div>

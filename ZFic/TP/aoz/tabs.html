@@ -1,1 +1,33 @@
-<div></div>
+<div style="border-collapse: collapse; border-spacing: 0">
+    <script>
+        (function (window, $) {
+            $(function () {
+                var currentclicked = "new";
+
+                $('.tabs span').on('click', function (event) {
+                    var v = $(this).prop('id');
+                    go(v);
+
+                });
+                $(window).on("load", function () {
+                    go(currentclicked)
+                });
+
+                function go(tab) {
+                    t = $('#tabs');
+                    c = t.find('.content');
+                    c.load("/static/temp/"+tab+".html","", function () {
+                        c.removeClass(currentclicked);
+                        c.addClass(tab);
+                        t.find('.tabs #' + currentclicked).removeClass("shown");
+                        t.find('.tabs #' + tab).addClass("shown");
+                        currentclicked = tab;
+                    });
+
+                }
+            });
+        })(window, jQuery);
+    </script>
+    <div class="tabs"><span id="new">New</span><span id="pop">Populair</span><span id="JU">Just updated</span></div>
+    <div class="content"></div>
+</div>
